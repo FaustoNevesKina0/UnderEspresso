@@ -7,6 +7,7 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers
@@ -45,6 +46,7 @@ class IntentsTest {
     fun startSecondaryActivity() {
         Intents.init()
         Espresso.onView(withId(R.id.textToSend)).perform(ViewActions.typeText("123456-abcdefg"))
+        Espresso.closeSoftKeyboard()
         val matcher: Matcher<Intent> =
             IntentMatchers.hasComponent(SecondaryActivity::class.java.name)
         val result: Instrumentation.ActivityResult =
